@@ -1,32 +1,70 @@
-import { StatusBar } from "expo-status-bar";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function App() {
+	const [itemValue, setItemValue] = useState("");
+	const [itemsList, setItemsList] = useState([]);
+	const handleChange = (e) => {
+		setItemValue(e?.target?.value);
+	};
+	const addItem = () => {
+		setItemsList([...itemsList, itemValue]);
+	};
 	return (
-		<View style={styles.container}>
-			<View style={styles.buttonView}>
-				<Text>Press the button below!</Text>
-				<Button title="Press me" onPress={() => alert("Button Pressed!!!")} />
+		<View style={styles.mainContainer}>
+			<View>
+				<TextInput
+					placeholder="Enter item here.!"
+					style={styles.input}
+					value={itemValue}
+				/>
+				<Button title="Add Item" onPress={addItem} />
 			</View>
+			<View style={styles.listContainer}>
+				<Text style={styles.listHeaderText}>Things to do </Text>
 
-			<StatusBar style="auto" animated={true} backgroundColor="transparent" />
+				{itemsList.length ? (
+					itemsList.map((item, index) => {
+						return (
+							<>
+								<Text>{index + 1}</Text>.<Text>{item}</Text>
+							</>
+						);
+					})
+				) : (
+					<Text style={styles.noItemsText}>No items yet!</Text>
+				)}
+			</View>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
-	container: {
+	mainContainer: {
+		paddingVertical: 48,
+		paddingHorizontal: 24,
 		flex: 1,
-		backgroundColor: "lightblue",
-		alignItems: "center",
-		justifyContent: "center",
+		flexDirection: "column-reverse",
+		justifyContent: "space-between",
 	},
-	text: {
-		color: "purple",
-		fontSize: 28,
+	listContainer: {
+		marginBottom: 12,
+	},
+	input: {
+		padding: 16,
+		borderWidth: 1,
+		borderColor: "lightblue",
+		marginBottom: 12,
+	},
+	listHeaderText: {
+		color: "rgba(0,0,170,0.7)",
+		fontSize: 32,
 		fontWeight: 800,
+		alignSelf: "center",
 	},
-	buttonView: {
-		margin: 32,
+	noItemsText: {
+		fontSize: 20,
+		padding: 24,
+		textAlign: "center",
 	},
 });
