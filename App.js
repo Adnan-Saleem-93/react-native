@@ -5,35 +5,44 @@ export default function App() {
 	const [itemValue, setItemValue] = useState("");
 	const [itemsList, setItemsList] = useState([]);
 	const handleChange = (e) => {
-		setItemValue(e?.target?.value);
+		setItemValue(e);
 	};
 	const addItem = () => {
 		setItemsList([...itemsList, itemValue]);
+		setItemValue("");
 	};
 	return (
 		<View style={styles.mainContainer}>
+			<View style={styles.listContainer}>
+				<View>
+					<Text style={styles.listHeaderText}>Things to do</Text>
+				</View>
+
+				{itemsList.length ? (
+					<View style={styles.itemsContainer}>
+						{itemsList.map((item, index) => {
+							return (
+								<View key={index} style={styles.listItem}>
+									<Text style={styles.listItemNumber}>{index + 1}</Text>
+									<Text style={styles.listItemText}>.{item}</Text>
+								</View>
+							);
+						})}
+					</View>
+				) : (
+					<View style={styles.noItemsContainer}>
+						<Text style={styles.noItemsText}>No items yet!</Text>
+					</View>
+				)}
+			</View>
 			<View>
 				<TextInput
 					placeholder="Enter item here.!"
 					style={styles.input}
 					value={itemValue}
+					onChangeText={handleChange}
 				/>
 				<Button title="Add Item" onPress={addItem} />
-			</View>
-			<View style={styles.listContainer}>
-				<Text style={styles.listHeaderText}>Things to do </Text>
-
-				{itemsList.length ? (
-					itemsList.map((item, index) => {
-						return (
-							<>
-								<Text>{index + 1}</Text>.<Text>{item}</Text>
-							</>
-						);
-					})
-				) : (
-					<Text style={styles.noItemsText}>No items yet!</Text>
-				)}
 			</View>
 		</View>
 	);
@@ -43,12 +52,36 @@ const styles = StyleSheet.create({
 	mainContainer: {
 		paddingVertical: 48,
 		paddingHorizontal: 24,
+		display: "flex",
 		flex: 1,
-		flexDirection: "column-reverse",
-		justifyContent: "space-between",
+		flexDirection: "column",
+		justifyContent: "center",
 	},
 	listContainer: {
-		marginBottom: 12,
+		flex: 2,
+		justifyContent: "flex-start",
+		alignItems: "center",
+	},
+	itemsContainer: {
+		flex: 1,
+		width: "100%",
+		justifyContent: "flex-start",
+		alignContent: "center",
+	},
+	noItemsContainer: {
+		flex: 1,
+		justifyContent: "center",
+		alignContent: "center",
+	},
+	listItem: {
+		flexDirection: "row",
+	},
+	listItemNumber: {
+		fontSize: 24,
+		fontWeight: 900,
+	},
+	listItemText: {
+		fontSize: 24,
 	},
 	input: {
 		padding: 16,
@@ -60,7 +93,7 @@ const styles = StyleSheet.create({
 		color: "rgba(0,0,170,0.7)",
 		fontSize: 32,
 		fontWeight: 800,
-		alignSelf: "center",
+		textAlign: "center",
 	},
 	noItemsText: {
 		fontSize: 20,
