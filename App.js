@@ -14,7 +14,7 @@ export default function App() {
 	return (
 		<View style={styles.mainContainer}>
 			<View style={styles.listContainer}>
-				<View>
+				<View style={styles.listHeaderContainer}>
 					<Text style={styles.listHeaderText}>Things to do</Text>
 				</View>
 
@@ -23,8 +23,8 @@ export default function App() {
 						{itemsList.map((item, index) => {
 							return (
 								<View key={index} style={styles.listItem}>
-									<Text style={styles.listItemNumber}>{index + 1}</Text>
-									<Text style={styles.listItemText}>.{item}</Text>
+									<Text style={styles.listItemNumber}>{index + 1}. </Text>
+									<Text style={styles.listItemText}>{item}</Text>
 								</View>
 							);
 						})}
@@ -35,7 +35,7 @@ export default function App() {
 					</View>
 				)}
 			</View>
-			<View>
+			<View style={styles.inputContainer}>
 				<TextInput
 					placeholder="Enter item here.!"
 					style={styles.input}
@@ -52,25 +52,40 @@ const styles = StyleSheet.create({
 	mainContainer: {
 		paddingVertical: 48,
 		paddingHorizontal: 24,
-		display: "flex",
-		flex: 1,
-		flexDirection: "column",
-		justifyContent: "center",
+		height: "100%",
 	},
 	listContainer: {
-		flex: 2,
-		justifyContent: "flex-start",
-		alignItems: "center",
+		flex: 6,
 	},
-	itemsContainer: {
+	inputContainer: {
 		flex: 1,
-		width: "100%",
-		justifyContent: "flex-start",
+		marginTop: 8,
+	},
+	listHeaderContainer: {
+		justifyContent: "center",
 		alignContent: "center",
+		flex: 1,
+	},
+	listHeaderText: {
+		color: "rgba(0,0,170,0.7)",
+		fontSize: 32,
+		fontWeight: 800,
+		textAlign: "center",
 	},
 	noItemsContainer: {
-		flex: 1,
+		flex: 6,
 		justifyContent: "center",
+		alignContent: "center",
+	},
+	noItemsText: {
+		fontSize: 20,
+		padding: 24,
+		textAlign: "center",
+	},
+	itemsContainer: {
+		flex: 6,
+		width: "100%",
+		justifyContent: "flex-start",
 		alignContent: "center",
 	},
 	listItem: {
@@ -88,16 +103,5 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: "lightblue",
 		marginBottom: 12,
-	},
-	listHeaderText: {
-		color: "rgba(0,0,170,0.7)",
-		fontSize: 32,
-		fontWeight: 800,
-		textAlign: "center",
-	},
-	noItemsText: {
-		fontSize: 20,
-		padding: 24,
-		textAlign: "center",
 	},
 });
