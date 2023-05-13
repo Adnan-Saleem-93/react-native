@@ -23,7 +23,6 @@ export default function App() {
 						{itemsList.map((item, index) => {
 							return (
 								<View key={index} style={styles.listItem}>
-									<Text style={styles.listItemNumber}>{index + 1}. </Text>
 									<Text style={styles.listItemText}>{item}</Text>
 								</View>
 							);
@@ -62,6 +61,7 @@ const styles = StyleSheet.create({
 	},
 	itemsContainer: {
 		flex: 1,
+		marginTop: 24,
 		width: "100%",
 		justifyContent: "flex-start",
 		alignContent: "center",
@@ -72,7 +72,12 @@ const styles = StyleSheet.create({
 		alignContent: "center",
 	},
 	listItem: {
+		borderWidth: 1,
+		borderColor: "rgba(0,0,0,0.3)",
 		flexDirection: "row",
+		borderRadius: 6,
+		padding: 16,
+		marginVertical: 8,
 	},
 	listItemNumber: {
 		fontSize: 24,
@@ -94,7 +99,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 	},
 	noItemsText: {
-		fontSize: 20,
+		fontSize: 32,
 		padding: 24,
 		textAlign: "center",
 	},
