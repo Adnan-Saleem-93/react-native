@@ -14,7 +14,7 @@ export default function App() {
 	return (
 		<View style={styles.mainContainer}>
 			<View style={styles.listContainer}>
-				<View style={styles.listHeaderContainer}>
+				<View>
 					<Text style={styles.listHeaderText}>Things to do</Text>
 				</View>
 
@@ -35,7 +35,7 @@ export default function App() {
 					</View>
 				)}
 			</View>
-			<View style={styles.inputContainer}>
+			<View>
 				<TextInput
 					placeholder="Enter item here.!"
 					style={styles.input}
@@ -52,40 +52,23 @@ const styles = StyleSheet.create({
 	mainContainer: {
 		paddingVertical: 48,
 		paddingHorizontal: 24,
+		display: "flex",
 		height: "100%",
 	},
 	listContainer: {
-		flex: 6,
-	},
-	inputContainer: {
-		flex: 1,
-		marginTop: 8,
-	},
-	listHeaderContainer: {
-		justifyContent: "center",
-		alignContent: "center",
-		flex: 1,
-	},
-	listHeaderText: {
-		color: "rgba(0,0,170,0.7)",
-		fontSize: 32,
-		fontWeight: 800,
-		textAlign: "center",
-	},
-	noItemsContainer: {
-		flex: 6,
-		justifyContent: "center",
-		alignContent: "center",
-	},
-	noItemsText: {
-		fontSize: 20,
-		padding: 24,
-		textAlign: "center",
+		flex: 2,
+		justifyContent: "flex-start",
+		alignItems: "center",
 	},
 	itemsContainer: {
-		flex: 6,
+		flex: 1,
 		width: "100%",
 		justifyContent: "flex-start",
+		alignContent: "center",
+	},
+	noItemsContainer: {
+		flex: 1,
+		justifyContent: "center",
 		alignContent: "center",
 	},
 	listItem: {
@@ -103,5 +86,16 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: "lightblue",
 		marginBottom: 12,
+	},
+	listHeaderText: {
+		color: "rgba(0,0,170,0.7)",
+		fontSize: 32,
+		fontWeight: 800,
+		textAlign: "center",
+	},
+	noItemsText: {
+		fontSize: 20,
+		padding: 24,
+		textAlign: "center",
 	},
 });
