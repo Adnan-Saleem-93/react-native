@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+	Button,
+	FlatList,
+	StyleSheet,
+	Text,
+	TextInput,
+	View,
+} from "react-native";
 
 export default function App() {
 	const [itemValue, setItemValue] = useState("");
@@ -8,25 +15,36 @@ export default function App() {
 		setItemValue(e);
 	};
 	const addItem = () => {
-		setItemsList([...itemsList, itemValue]);
-		setItemValue("");
+		setItemsList((oldList) => [
+			...oldList,
+			{ id: Math.random().toString(), text: itemValue },
+		]);
+		// setItemValue("");
 	};
 	return (
 		<View style={styles.mainContainer}>
 			<View style={styles.listContainer}>
 				<View>
-					<Text style={styles.listHeaderText}>Things to do</Text>
+					<Text style={styles.listHeaderText}>To Do List</Text>
 				</View>
 
 				{itemsList.length ? (
 					<View style={styles.itemsContainer}>
-						{itemsList.map((item, index) => {
-							return (
-								<View key={index} style={styles.listItem}>
-									<Text style={styles.listItemText}>{item}</Text>
-								</View>
-							);
-						})}
+						<FlatList
+							data={itemsList}
+							renderItem={(itemData) => {
+								return (
+									<View style={styles.listItem}>
+										<Text style={styles.listItemText}>
+											{itemData.item.text}
+										</Text>
+									</View>
+								);
+							}}
+							keyExtractor={(item) => {
+								return item.id;
+							}}
+						/>
 					</View>
 				) : (
 					<View style={styles.noItemsContainer}>
@@ -72,12 +90,11 @@ const styles = StyleSheet.create({
 		alignContent: "center",
 	},
 	listItem: {
-		borderWidth: 1,
-		borderColor: "rgba(0,0,0,0.3)",
+		backgroundColor: "#ffcedf",
 		flexDirection: "row",
 		borderRadius: 6,
 		padding: 16,
-		marginVertical: 8,
+		marginVertical: 6,
 	},
 	listItemNumber: {
 		fontSize: 24,
