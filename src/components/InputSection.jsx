@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { View, StyleSheet, Button, TextInput } from "react-native";
+import CustomButton from "./Form/Button";
 
 const InputSection = ({ setItemsList }) => {
 	const [itemValue, setItemValue] = useState("");
@@ -7,11 +8,13 @@ const InputSection = ({ setItemsList }) => {
 		setItemValue(e);
 	};
 	const addItem = () => {
-		setItemsList((oldList) => [
-			...oldList,
-			{ id: Math.random().toString(), text: itemValue },
-		]);
-		// setItemValue("");
+		if (itemValue) {
+			setItemsList((oldList) => [
+				...oldList,
+				{ id: Math.random().toString(), text: itemValue },
+			]);
+			setItemValue("");
+		}
 	};
 
 	return (
@@ -22,7 +25,7 @@ const InputSection = ({ setItemsList }) => {
 				value={itemValue}
 				onChangeText={handleChange}
 			/>
-			<Button title="Add Item" onPress={addItem} />
+			<CustomButton text="Add Item" onAdd={addItem} />
 		</View>
 	);
 };
@@ -32,7 +35,8 @@ const styles = StyleSheet.create({
 		padding: 16,
 		borderWidth: 1,
 		borderColor: "lightblue",
-		marginBottom: 12,
+		marginBottom: 4,
+		marginTop: 8,
 	},
 });
 

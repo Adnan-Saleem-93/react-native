@@ -8,14 +8,9 @@ const ListItem = ({ text, id, setItemsList }) => {
 	};
 
 	return (
-		// <Pressable onLongPress={() => alert(`${text} Pressed!`)}>
 		<View style={styles.listItem}>
 			<Text style={styles.listItemText}>{text}</Text>
-			<Text style={styles.deleteBtnText} onPress={deleteItems}>
-				Delete
-			</Text>
 		</View>
-		// </Pressable>
 	);
 };
 
