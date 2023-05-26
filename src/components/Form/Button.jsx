@@ -1,18 +1,26 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { colors } from "../../utils/colors";
 
-const CustomButton = ({ text = "", onAdd }) => {
+const CustomButton = ({
+	text = "",
+	onPressEvent,
+	btnColor = colors.primary,
+	btnTextColor = colors.light,
+}) => {
 	return (
-		<Pressable onPress={onAdd} android_ripple={{ color: "lightgrey" }}>
-			<View style={styles.listItem}>
-				<Text style={styles.listItemText}>{text}</Text>
+		<Pressable onPress={onPressEvent} android_ripple={{ color: "lightgrey" }}>
+			<View style={{ ...styles.buttonBox, backgroundColor: btnColor }}>
+				<Text style={{ ...styles.buttonText, color: btnTextColor }}>
+					{text}
+				</Text>
 			</View>
 		</Pressable>
 	);
 };
 
 const styles = StyleSheet.create({
-	listItem: {
-		backgroundColor: "#3366ff",
+	buttonBox: {
+		backgroundColor: colors.primary,
 		flexDirection: "row",
 		borderRadius: 6,
 		padding: 16,
@@ -20,7 +28,7 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center",
 	},
-	listItemText: {
+	buttonText: {
 		color: "#fff",
 		fontSize: 18,
 	},

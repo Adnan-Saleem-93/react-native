@@ -16,9 +16,11 @@ const ListItem = ({ text, id, setItemsList }) => {
 
 const styles = StyleSheet.create({
 	listItem: {
-		backgroundColor: "#dadfeb",
+		backgroundColor: "#ededed",
 		flexDirection: "row",
 		borderRadius: 6,
+		borderColor: "#c2c3ed",
+		borderWidth: 1,
 		padding: 16,
 		marginVertical: 6,
 		justifyContent: "space-between",
