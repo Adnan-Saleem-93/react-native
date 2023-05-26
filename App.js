@@ -8,7 +8,7 @@ export default function App() {
 
 	return (
 		<View style={styles.mainContainer}>
-			<ToDoList itemsList={itemsList} />
+			<ToDoList itemsList={itemsList} setItemsList={setItemsList} />
 			<InputSection setItemsList={setItemsList} />
 		</View>
 	);
