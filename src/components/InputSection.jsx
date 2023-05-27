@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, StyleSheet, TextInput, Modal } from "react-native";
+import { View, StyleSheet, TextInput, Modal, Image } from "react-native";
 import CustomButton from "./Form/Button";
 import { colors } from "../utils/colors";
 
@@ -24,7 +24,13 @@ const InputSection = ({ setItemsList, setIsModalVisible, isModalVisible }) => {
 
 	return (
 		<Modal visible={isModalVisible} animationType="slide">
-			<View style={styles.modalContainer}>
+			<View style={styles.imageContainer}>
+				<Image
+					style={styles.image}
+					source={require("../../assets/add-new.jpg")}
+				/>
+			</View>
+			<View style={styles.inputContainer}>
 				<TextInput
 					placeholder="Enter item here.!"
 					style={{
@@ -50,10 +56,20 @@ const InputSection = ({ setItemsList, setIsModalVisible, isModalVisible }) => {
 };
 
 const styles = StyleSheet.create({
-	modalContainer: {
+	inputContainer: {
 		padding: 16,
 		justifyContent: "center",
 		flex: 1,
+	},
+	imageContainer: {
+		justifyContent: "center",
+		alignItems: "center",
+		flex: 2,
+	},
+	image: {
+		width: 350,
+		height: 350,
+		resizeMode: "cover",
 	},
 	input: {
 		padding: 16,
