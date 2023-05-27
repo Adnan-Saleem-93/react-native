@@ -2,6 +2,7 @@ import { useState } from "react";
 import { View, StyleSheet, TextInput, Modal, Image } from "react-native";
 import CustomButton from "./Form/Button";
 import { colors } from "../utils/colors";
+import PageHeader from "./PageHeader";
 
 const InputSection = ({ setItemsList, setIsModalVisible, isModalVisible }) => {
 	const [itemValue, setItemValue] = useState("");
@@ -24,6 +25,10 @@ const InputSection = ({ setItemsList, setIsModalVisible, isModalVisible }) => {
 
 	return (
 		<Modal visible={isModalVisible} animationType="slide">
+			<View style={styles.pageHeader}>
+				<PageHeader text="Add New Item" />
+			</View>
+
 			<View style={styles.imageContainer}>
 				<Image
 					style={styles.image}
@@ -40,7 +45,7 @@ const InputSection = ({ setItemsList, setIsModalVisible, isModalVisible }) => {
 					value={itemValue}
 					onChangeText={handleChange}
 				/>
-				<CustomButton text="Add Item" onPressEvent={addItem} />
+				<CustomButton text="Add" onPressEvent={addItem} />
 				<CustomButton
 					text="Cancel"
 					onPressEvent={() => {
@@ -60,6 +65,10 @@ const styles = StyleSheet.create({
 		padding: 16,
 		justifyContent: "center",
 		flex: 1,
+	},
+	pageHeader: {
+		flex: 1,
+		marginTop: 8,
 	},
 	imageContainer: {
 		justifyContent: "center",
