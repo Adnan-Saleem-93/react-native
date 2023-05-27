@@ -1,4 +1,5 @@
 import { StyleSheet, View, Text } from "react-native";
+import { colors } from "../utils/colors";
 
 const PageHeader = ({ text = "" }) => {
 	return (
@@ -10,7 +11,7 @@ const PageHeader = ({ text = "" }) => {
 
 const styles = StyleSheet.create({
 	listHeaderText: {
-		color: "rgba(0,0,170,0.7)",
+		color: colors.primary,
 		fontSize: 32,
 		fontWeight: 800,
 		textAlign: "center",

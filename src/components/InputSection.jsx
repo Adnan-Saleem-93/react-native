@@ -61,23 +61,24 @@ const InputSection = ({ setItemsList, setIsModalVisible, isModalVisible }) => {
 };
 
 const styles = StyleSheet.create({
-	inputContainer: {
-		padding: 16,
-		justifyContent: "center",
-		flex: 1,
-	},
 	pageHeader: {
 		flex: 1,
 		marginTop: 8,
 	},
 	imageContainer: {
-		justifyContent: "center",
+		justifyContent: "flex-end",
 		alignItems: "center",
-		flex: 2,
+		flex: 3,
+	},
+	inputContainer: {
+		marginTop: 16,
+		padding: 16,
+		justifyContent: "center",
+		flex: 3,
 	},
 	image: {
 		width: 350,
-		height: 350,
+		height: "100%",
 		resizeMode: "cover",
 	},
 	input: {

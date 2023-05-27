@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 const ListItem = ({ text, id, setItemsList }) => {
 	const deleteItems = () => {
@@ -10,6 +10,9 @@ const ListItem = ({ text, id, setItemsList }) => {
 	return (
 		<View style={styles.listItem}>
 			<Text style={styles.listItemText}>{text}</Text>
+			<Text onPress={deleteItems} style={styles.deleteBtnText}>
+				Delete
+			</Text>
 		</View>
 	);
 };
@@ -28,9 +31,10 @@ const styles = StyleSheet.create({
 	},
 	listItemText: {
 		fontSize: 24,
+		maxWidth: "80%",
 	},
 	deleteBtnText: {
-		fontSize: 12,
+		fontSize: 16,
 		color: "red",
 		fontWeight: 700,
 	},
